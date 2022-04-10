@@ -16,6 +16,7 @@ class _AddNewTaskState extends State<AddNewTask> {
   late TextEditingController _StartTime;
   late TextEditingController _EndTime;
   DateTime SelectedDate = DateTime.now();
+  String Category = "Meeting";
   @override
   void initState() {
     // TODO: implement initState
@@ -61,6 +62,12 @@ class _AddNewTaskState extends State<AddNewTask> {
     }
   }
 
+  _SetCategory(String Category) {
+    this.setState(() {
+      this.Category = Category;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -77,8 +84,13 @@ class _AddNewTaskState extends State<AddNewTask> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(Icons.arrow_back,
-                          size: 30, color: Colors.white),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(Icons.arrow_back,
+                            size: 30, color: Colors.white),
+                      ),
                       SizedBox(
                         width: 50,
                       ),
@@ -160,7 +172,6 @@ class _AddNewTaskState extends State<AddNewTask> {
                   margin: EdgeInsets.only(top: 40),
                   padding:
                       EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-                  height: MediaQuery.of(context).size.height * 0.5,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -287,45 +298,97 @@ class _AddNewTaskState extends State<AddNewTask> {
                               alignment: WrapAlignment.spaceEvenly,
                               crossAxisAlignment: WrapCrossAlignment.start,
                               children: [
-                                Categorcard(
-                                  CategoryText: 'Marketting',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Marketting');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Marketting',
+                                    isActive: this.Category == 'Marketting',
+                                  ),
                                 ),
-                                Categorcard(
-                                  CategoryText: 'Meeting',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Meeting');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Meeting',
+                                    isActive: this.Category == 'Meeting',
+                                  ),
                                 ),
-                                Categorcard(
-                                  CategoryText: 'Study',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Study');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Study',
+                                    isActive: this.Category == 'Study',
+                                  ),
                                 ),
-                                Categorcard(
-                                  CategoryText: 'Sports',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Sports');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Sports',
+                                    isActive: this.Category == 'Sports',
+                                  ),
                                 ),
-                                Categorcard(
-                                  CategoryText: 'Development',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Development');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Development',
+                                    isActive: this.Category == 'Development',
+                                  ),
                                 ),
-                                Categorcard(
-                                  CategoryText: 'Family',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Family');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Family',
+                                    isActive: this.Category == 'Family',
+                                  ),
                                 ),
-                                Categorcard(
-                                  CategoryText: 'Urgent',
-                                  isActive: true,
+                                GestureDetector(
+                                  onTap: () {
+                                    this._SetCategory('Urgent');
+                                  },
+                                  child: Categorcard(
+                                    CategoryText: 'Urgent',
+                                    isActive: this.Category == 'Urgent',
+                                  ),
                                 )
                               ],
                             )
                           ],
                         ),
+                      ),
+                      SizedBox(
+                        height: 100,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromRGBO(130, 0, 255, 1),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Create Task",
+                          style: GoogleFonts.montserrat(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                       )
                     ],
                   ),
                 ),
-                ElevatedButton(onPressed: (){}, child: Text("Create"))
               ],
-
             ),
           ),
         ),

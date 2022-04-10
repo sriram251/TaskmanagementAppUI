@@ -13,16 +13,18 @@ class Categorcard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.all(5),
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.black26,
+          color: !this.isActive
+              ? Color.fromRGBO(221, 229, 249, 1)
+              : Color.fromRGBO(130, 0, 255, 1),
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
         child: Text(
           this.CategoryText,
           style: GoogleFonts.montserrat(
-            color: Colors.white,
-            fontSize: 15,
+            color: !this.isActive ? Colors.grey : Colors.white,
+            fontSize: 12,
           ),
         ));
   }
